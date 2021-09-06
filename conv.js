@@ -20,7 +20,8 @@ module.exports = async function(res, id = new String, text = new String) {
   
   let start = Date.now();
   ffmpeg(stream).audioBitrate(128).save(`file/${text}.mp3`).on('progress', async (p) => {
-    fs.writeFileSync('log.txt',`${text} 다운로드중`,'utf8');
+    console.log(`${text} 다운로드중 : ${p.targetSize}kb 완료`);
+    fs.writeFileSync('log.txt',`${text} 다운로드중 : ${p.targetSize}kb 완료`,'utf8');
   }).on('end', () => {
     console.log(`다운로드 완료 - ${(Date.now() - start) / 1000}초 걸림`);
     fs.writeFileSync('log.txt',`다운로드 완료 - ${(Date.now() - start) / 1000}초 걸림`,'utf8');

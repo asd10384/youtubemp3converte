@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
   let url = req.body.url || '';
   console.log(url);
   if (url.match(checkyturl)) {
-    url = url.replace(checkytid, '');
+    url = url.replace(checkytid, '').replace(/&.+/gi, '');
     console.log(url);
     const text = req.body.text || null;
     console.log(`${text} 다운로드중`);
