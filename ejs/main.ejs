@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('../header/header.ejs') %>
+  </head>
+  <body>
+    <h1>유튜브 영상 MP3</h1>
+    <h3 id="log"></h3>
+    <form method="POST" action="/">
+      <input class="text" type="text" name="url" placeholder="유튜브 주소 뒷부분 (ex: Za1wb_OADto)">
+      <input class="text" type="text" name="text" placeholder="제목">
+      <br>
+      <input class="btn" type="submit" value="MP3로 변환">
+    </form>
+    <script>
+      let xhr = new XMLHttpRequest();
+      setInterval(() => {
+      xhr.open('POST', '/log');
+      xhr.setRequestHeader('Content-type', 'application/json');
+      xhr.send();
+      xhr.addEventListener('load', () => {
+        let data = xhr.responseText;
+        data = JSON.parse(data);
+        document.getElementById('log').innerHTML = data['text'];
+      });
+      }, 100);
+    </script>
+  </body>
+  <style>
+    body {
+      text-align: center;
+      margin-top: 50px;
+    }
+    h1 {
+      margin: 20px 0;
+    }
+    .text {
+      font-size: 20px;
+      padding: 10px 10px;
+      width: 50%;
+    }
+    .btn {
+      margin-top: 15px;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    @media screen and (max-width: 480px) {
+      .text {
+        min-width: 85%;
+      }
+    }
+  </style>
+  <script>
+    function resize(obj) {
+      obj.style.height = '1px';
+      obj.style.height = (obj.scrollHeight)+"px";
+    }
+  </script>
+</html>
