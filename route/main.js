@@ -11,7 +11,8 @@ router.get('/', async (req, res) => {
     title: '유튜브 영상 MP3 변환',
     dec: '유튜브 영상 MP3 변환 사이트',
     domain: process.env.DOMAIN,
-    url: `http://${process.env.DOMAIN}`
+    url: `http://${process.env.DOMAIN}`,
+    time: process.env.LOADTIME || 500
   });
 });
 router.post('/', async (req, res) => {

@@ -24,7 +24,7 @@
         data = JSON.parse(data);
         document.getElementById('log').innerHTML = data['text'];
       });
-      }, 100);
+      }, Number('<%- time %>'));
     </script>
   </body>
   <style>
