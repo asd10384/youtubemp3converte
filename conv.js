@@ -29,8 +29,8 @@ module.exports = async function(res, id = new String, text = new String) {
       return fs.writeFileSync('log.txt', `다운로드 가능`, 'utf8');
     }, 1000);
   }).on('error', (err) => {
-    res.status(404).send({err: '영상을 다운로드 할수없습니다.'});
-    return fs.writeFileSync('log.txt', `다운로드 가능`, 'utf8');
+    fs.writeFileSync('log.txt', `영상을 다운로드 할수없습니다.`, 'utf8');
+    return res.status(404).send('<script>window.location="/"</script>');
   });
 }
 
