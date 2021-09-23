@@ -25,13 +25,11 @@ module.exports = async function(res, id = new String, text = new String) {
   }).on('end', () => {
     console.log(`다운로드 완료 - ${(Date.now() - start) / 1000}초 걸림`);
     fs.writeFileSync('log.txt',`다운로드 완료 - ${(Date.now() - start) / 1000}초 걸림`,'utf8');
-    res.status(200).redirect(`file/file/${text}.mp3`);
     return setTimeout(() => {
       return fs.writeFileSync('log.txt', `다운로드 가능`, 'utf8');
     }, 1000);
   }).on('error', (err) => {
     fs.writeFileSync('log.txt', `영상을 다운로드 할수없습니다.`, 'utf8');
-    return res.status(404).send('<script>window.location="/"</script>');
   });
 }
 
