@@ -5,13 +5,13 @@ const fs = require('fs');
 
 fs.writeFileSync('log.txt','다운로드 가능','utf8');
 const audiofile = 'file';
-if (fs.existsSync(audiofile)) {
-  fs.readdirSync(audiofile).forEach((f) => {
-    fs.unlinkSync(`${audiofile}/${f}`);
-  });
-} else {
-  fs.mkdirSync(audiofile);
-}
+// if (fs.existsSync(audiofile)) {
+//   fs.readdirSync(audiofile).forEach((f) => {
+//     fs.unlinkSync(`${audiofile}/${f}`);
+//   });
+// } else {
+//   fs.mkdirSync(audiofile);
+// }
 
 module.exports = async function(res, id = new String, text = new String) {
   let stream = ytdl(id, {
@@ -19,7 +19,7 @@ module.exports = async function(res, id = new String, text = new String) {
   });
   
   let start = Date.now();
-  ffmpeg(stream).audioBitrate(128).save(`file/${text}.mp3`).on('progress', async (p) => {
+  await ffmpeg(stream).audioBitrate(128).save(`file/${text}.ogg`).on('progress', async (p) => {
     console.log(`${text} 다운로드중 : ${p.targetSize}kb 완료`);
     fs.writeFileSync('log.txt',`${text} 다운로드중 : ${p.targetSize}kb 완료`,'utf8');
   }).on('end', () => {

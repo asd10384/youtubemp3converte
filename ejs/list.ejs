@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('../header/header.ejs') %>
+  </head>
+  <body>
+    <h1>유튜브 영상 MP3</h1>
+    <div class="file">
+      <%- text %>
+    </div>
+  </body>
+  <style>
+    body {
+      text-align: center;
+      margin-top: 50px;
+    }
+    h1 {
+      margin: 20px 0;
+    }
+    .text {
+      font-size: 20px;
+      padding: 10px 10px;
+      width: 50%;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 1);
+      text-decoration: none;
+    }
+    .text:hover {
+      color: rgba(0, 0, 0, 0.7);
+    }
+  </style>
+</html>
